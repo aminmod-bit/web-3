@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+/* ============================
+   Salaf Library — Design Tokens
+   ============================ */
+@theme {
+  --color-ink: #1c1a17;
+  --color-ink-soft: #4a4640;
+  --color-ink-mute: #8a857c;
+  --color-paper: #f6f5f1;
+  --color-paper-2: #efece4;
+  --color-paper-3: #e7e2d4;
+  --color-line: #d9d3c2;
+  --color-line-soft: #ece6d7;
+
+  --color-emerald-950: #0a2a20;
+  --color-emerald-900: #0f3d2e;
+  --color-emerald-800: #144d3a;
+  --color-emerald-700: #1b5e3f;
+  --color-emerald-600: #2a7450;
+  --color-emerald-500: #3a8a64;
+
+  --color-gold-500: #c9a44a;
+  --color-gold-600: #b18a32;
+  --color-gold-400: #d8b966;
+
+  --font-serif: "Source Serif Pro", "Noto Naskh Arabic", Georgia, "Times New Roman", serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-arabic: "Noto Naskh Arabic", "Amiri", "Scheherazade New", serif;
+}
+
+/* Smooth, app-grade base */
+* { -webkit-tap-highlight-color: transparent; }
+html, body { overscroll-behavior-y: none; }
+html { scroll-behavior: smooth; }
+body {
+  background:
+    radial-gradient(1200px 600px at 100% -10%, rgba(201, 164, 74, 0.08), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, rgba(15, 61, 46, 0.06), transparent 60%),
+    #f6f5f1;
+  color: #1c1a17;
+  font-family: var(--font-sans);
+}
+
+/* Arabic-friendly helpers */
+.arabic {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  line-height: 1.9;
+  font-size: 1.15em;
+}
+
+.serif { font-family: var(--font-serif); }
+
+/* Hide scrollbar but keep scrolling */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Custom thin scrollbar */
+.thin-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: rgba(15,61,46,0.25); border-radius: 4px; }
+.thin-scroll::-webkit-scrollbar-track { background: transparent; }
+
+/* Selection */
+::selection { background: rgba(15, 61, 46, 0.85); color: #f6f5f1; }
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid #1b5e3f;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Card hover lift */
+.lift { transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+.lift:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -18px rgba(15, 61, 46, 0.35); }
+
+/* Glass / paper card */
+.paper {
+  background: linear-gradient(180deg, #fdfcf8 0%, #f6f1e3 100%);
+  border: 1px solid #ece6d7;
+  border-radius: 18px;
+}
+
+.paper-soft {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border: 1px solid #ece6d7;
+  border-radius: 18px;
+}
+
+/* Gradient brand strip */
+.brand-gradient {
+  background:
+    radial-gradient(120% 100% at 0% 0%, rgba(255,255,255,0.15), transparent 50%),
+    linear-gradient(135deg, #0f3d2e 0%, #1b5e3f 60%, #2a7450 100%);
+}
+
+.brand-gold {
+  background: linear-gradient(135deg, #c9a44a 0%, #b18a32 100%);
+}
+
+/* Subtle decorative ornament */
+.ornament {
+  background-image:
+    radial-gradient(circle at 50% 0%, rgba(201,164,74,0.18), transparent 60%);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp .35s ease both; }
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #ece6d7 0px, #f6f1e3 200px, #ece6d7 400px);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+/* Container max width helper */
+.container-x { max-width: 1240px; margin-inline: auto; padding-inline: 1rem; }
+@media (min-width: 768px) { .container-x { padding-inline: 1.5rem; } }
+
+/* Reader pages */
+.reader-page {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.04),
+    0 8px 24px -10px rgba(0,0,0,0.18);
+}
+
+/* Hide outline on mouse, keep on keyboard */
+button, a { outline: none; }
+button:focus-visible, a:focus-visible { outline: 2px solid #1b5e3f; outline-offset: 2px; border-radius: 8px; }
+
+/* Bottom safe area for mobile */
+.safe-bottom { padding-bottom: max(env(safe-area-inset-bottom), 0.5rem); }
